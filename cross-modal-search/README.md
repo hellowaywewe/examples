@@ -32,9 +32,7 @@
 
 </p>
 
-In this example, jina is used to implement a Cross-modal search system. This example allows the user to search for
- images given a caption description and to look for a caption description given an image. We encode images and its
-  captions (any descriptive text of the image) in separate indexes, which are later queried in a `cross-modal` fashion. It queries the `text index` using `image embeddings` and query the `image index` using `text embeddings`. 
+In this example, `jina` is used to implement a Cross-modal search system. This example allows the user to search for images given a caption description and to look for a caption description given an image. We encode images and its captions (any descriptive text of the image) in separate indexes, which are later queried in a `cross-modal` fashion. It queries the `text index` using `image embeddings` and query the `image index` using `text embeddings`. 
 
 **Motive behind Cross Modal Retrieval**
 
@@ -91,11 +89,9 @@ This demo requires Python 3.7 and `jina` installation.
 
 ## Prepare the data
 
-The model used has been trained using `Flickr30k` and therefore we recommend using this dataset to try this system.
-But it is a good exercise to see if it works as well for other datasets or your custom ones.
+The model used has been trained using `Flickr30k` and therefore we recommend using this dataset to try this system. But it is a good exercise to see if it works as well for other datasets or your custom ones.
 
-To make this work, we need to get the image files from the kaggle dataset (https://www.kaggle.com/hsankesara/flickr-image-dataset).
-To get it, once you have your Kaggle Token in your system as described in (https://www.kaggle.com/docs/api), run:
+To make this work, we need to get the image files from the `kaggle` dataset (https://www.kaggle.com/hsankesara/flickr-image-dataset). To get it, once you have your Kaggle Token in your system as described in (https://www.kaggle.com/docs/api), run:
 
 ```bash
 pip install kaggle
@@ -121,9 +117,9 @@ Once all the steps are completed, we need to make sure that under `cross-modal-s
 
 ### Use Flickr8k
 
-Although the model is trained on Flickr30k, you can test on Flickr8k dataset, which is a much smaller version of flickr30k.
+Although the model is trained on `Flickr30k`, you can test on `Flickr8k` dataset, which is a much smaller version of flickr30k.
 
-To do so, instead of downloading the flickr30k from kaggle, just take its 8k counterpart
+To do so, instead of downloading the `flickr30k` from kaggle, just take its 8k counterpart
 
 ```bash
 kaggle datasets download adityajn105/flickr8k
