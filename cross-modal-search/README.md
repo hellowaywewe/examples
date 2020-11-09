@@ -50,8 +50,7 @@ In the example, we expect images embeddings to be nearby their captions’ embed
 
 **Research for Cross Modal Retrieval**
 
-The models used for the example are cited from the paper
-_Improving Visual-Semantic Embeddings with Hard Negatives_ (https://arxiv.org/pdf/1707.05612.pdf).
+The models used for the example are cited from the paper _Improving Visual-Semantic Embeddings with Hard Negatives_ (https://arxiv.org/pdf/1707.05612.pdf).
 
 To make this search system retrieve good results, we have used the models trained in [https://github.com/fartashf/vsepp](https://github.com/fartashf/vsepp) . A model has been trained that encodes `text` and `images` in a common embedding space trying to put together the embedding of images and its corresponding captions.
 
@@ -62,7 +61,7 @@ We use one network per modality:
 
 Last layers of these networks are removed and they are used as feature extractors. A Fully Connected Layer is added on top of each one that actually maps the extracted features to the new embedding space.
 
-They are trained on `Flickr30k` dataset with ContrastiveLoss (Tries to put positive matches close in the embedding space and separate negative samples)
+They are trained on `Flickr30k` dataset with ContrastiveLoss (Tries to put positive matches close in the embedding space and separate negative samples).
 
 **VSE Encoders in Jina for Cross Modal Search**
 
@@ -74,7 +73,6 @@ Process followed is as below:
 - Instantiate their VSE encoder and extracts the branch interesting for the modality.
 
 A Dockerfile is provided for each encoder which takes care of all the dependencies and downloads all required files.
-
 
 **Table of Contents**
 
@@ -89,7 +87,7 @@ A Dockerfile is provided for each encoder which takes care of all the dependenci
 
 ## Prerequisites
 
-This demo requires Python 3.7 and jina installation.
+This demo requires Python 3.7 and `jina` installation.
 
 ## Prepare the data
 
@@ -144,8 +142,7 @@ data/fyk/f8k/captions.txt
 
 ## Build the docker images
 
-To abstract all dependencies, needed to make the model from (cite paper) work, docker images have been prepared to contain
-text and image encoders. This images are very big (about 5GB each (working to make them smaller)).
+To abstract all dependencies, needed to make the model from _Improving Visual-Semantic Embeddings with Hard Negatives_ work, docker images have been prepared to contain text and image encoders. This images are very big (about 5GB each (working to make them smaller)).
 
 In order to build them (it may take some time since a lot of data is downloaded),
 
@@ -163,18 +160,18 @@ docker build -f Dockerfile -t jinaai/hub.executors.encoders.nlp.vse .
 
 ### Index 
 
-Index is run with the following command, where batch_size can be chosen by the user. Index will index both images and captions
+Index is run with the following command, where `batch_size` can be chosen by the user. Index will process both images and captions
 
 ```bash
 python app.py -t index -n $num_docs -b $batch_size -d 'f8k'
 ```
 
-Not that num_docs should be 8k or 30k depending on the flickr dataset you use. If you decide to index the complete datasets,
+Not that `num_docs` should be 8k or 30k depending on the `flickr` dataset you use. If you decide to index the complete datasets,
 it is recommendable to increase the number of shards and parallelization. The dataset is provided with the `-d` parameter
 with the valid options of `30k` and `8k`. If you want to index your own dataset, check `dataset.py` to see 
 how `data` is provided and adapt to your own data source.
 
-Jina normalizes the images need before entering them in the encoder.
+Jina normalizes the images needed before entering them in the encoder.
 QueryLanguageDriver is used to redirect (filtering) documents based on modality.
 
 ### Query
@@ -192,8 +189,8 @@ Examples of captions in the dataset:
 
 Note the cross for which cross modal stands.
 
-Internally, TextEncoder targets ImageVectorIndexer and ImageEncoder targets TextVectorIndexer.
-ImageVectorIndexer and TextVectorIndexer map to a common Embedding Space. (To Jina it means having common dimensionality).
+Internally, `TextEncoder` targets `ImageVectorIndexer` and `ImageEncoder` targets `TextVectorIndexer`.
+`ImageVectorIndexer` and `TextVectorIndexer` map to a common Embedding Space. (To Jina it means having common dimensionality).
 
 ## Results
 ![](https://github.com/jina-ai/examples/blob/master/cross-modal-search/results/cross-modal-result.jpg "Cross Modal Search Results")
