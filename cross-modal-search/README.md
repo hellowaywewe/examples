@@ -142,7 +142,7 @@ data/fyk/f8k/captions.txt
 
 ## Build the docker images
 
-To abstract all dependencies, needed to make the model from _Improving Visual-Semantic Embeddings with Hard Negatives_ work, docker images have been prepared to contain text and image encoders. This images are very big (about 5GB each (working to make them smaller)).
+To abstract all dependencies needed to make the model from _Improving Visual-Semantic Embeddings with Hard Negatives_ work, `docker` images have been prepared to contain text and image encoders. These images are very big (about `5GB` each (working to make them smaller)).
 
 In order to build them (it may take some time since a lot of data is downloaded),
 
