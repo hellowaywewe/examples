@@ -36,6 +36,16 @@ resource "aws_instance" "flow" {
   tags = {
     Name = "flow"
   }
+  provisioner "local-exec" {
+    command = "python app.py index"
+    interpreter = ["Python", "-Command"]
+    environment = {
+      JINA_ENCODER_HOST = "encoder"
+      JINA_INDEX_HOST = "index"
+      JINA_GATEWAY_REST_PORT = 45678
+      JINA_WORKSPACE = "workspace"
+    }
+  }
 }
 
 data "aws_subnet_ids" "default" {
@@ -129,7 +139,7 @@ resource "aws_lb_target_group" "target_group" {
     protocol            = "HTTP"
     timeout             = "60"
     unhealthy_threshold = "2"
-    matcher             = "200-405"
+    matcher             = "200,301,302"
     path                = "/"
   }
 }
@@ -198,7 +208,3 @@ resource "aws_ecs_service" "southpark_service" {
 output "alb_url" {
   value = "http://${aws_alb.application_load_balancer.dns_name}"
 }
-
-
-
-
